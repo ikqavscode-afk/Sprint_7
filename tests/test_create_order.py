@@ -4,9 +4,11 @@ import requests
 
 from data import BASE_URL, ORDER_ENDPOINT, ORDER_DATA
 
+
 @allure.feature("Заказы")
 @allure.story("Создание заказа")
 class TestCreateOrder:
+
     @allure.title("Создание заказа с разными вариантами цвета")
     @pytest.mark.parametrize(
         "color",
@@ -30,3 +32,4 @@ class TestCreateOrder:
 
         assert response.status_code == 201
         assert "track" in response.json()
+        

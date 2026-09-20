@@ -3,9 +3,11 @@ import requests
 
 from data import BASE_URL, ORDER_ENDPOINT
 
+
 @allure.feature("Заказы")
 @allure.story("Получение списка заказов")
 class TestGetOrders:
+
     @allure.title("Получение списка заказов")
     def test_get_orders(self):
         response = requests.get(
@@ -15,3 +17,4 @@ class TestGetOrders:
         assert response.status_code == 200
         assert "orders" in response.json()
         assert isinstance(response.json()["orders"], list)
+        

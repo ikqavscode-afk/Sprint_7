@@ -1,8 +1,12 @@
 import allure
 import pytest
-import requests
 
-from data import BASE_URL, ORDER_ENDPOINT, ORDER_DATA
+from data import (
+    ORDER_DATA_BLACK,
+    ORDER_DATA_GREY,
+    ORDER_DATA_BLACK_GREY,
+    ORDER_DATA_WITHOUT_COLOR
+)
 
 
 @allure.feature("Заказы")
@@ -11,25 +15,23 @@ class TestCreateOrder:
 
     @allure.title("Создание заказа с разными вариантами цвета")
     @pytest.mark.parametrize(
-        "color",
+        "payload",
         [
-            ["BLACK"],
-            ["GREY"],
-            ["BLACK", "GREY"],
-            None
+            ORDER_DATA_BLACK,
+            ORDER_DATA_GREY,
+            ORDER_DATA_BLACK_GREY,
+            ORDER_DATA_WITHOUT_COLOR
+        ],
+        ids=[
+            "BLACK",
+            "GREY",
+            "BLACK_AND_GREY",
+            "WITHOUT_COLOR"
         ]
     )
-    def test_create_order(self, color):
-        payload = ORDER_DATA.copy()
-
-        if color is not None:
-            payload["color"] = color
-
-        response = requests.post(
-            f"{BASE_URL}{ORDER_ENDPOINT}",
-            json=payload
-        )
+    def test_create_order(self, api, payload):
+        # каждый параметр является готовым телом запроса.
+        response = api.create_order(payload)
 
         assert response.status_code == 201
         assert "track" in response.json()
-        

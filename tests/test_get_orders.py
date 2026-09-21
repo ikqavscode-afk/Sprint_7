@@ -1,7 +1,4 @@
 import allure
-import requests
-
-from data import BASE_URL, ORDER_ENDPOINT
 
 
 @allure.feature("Заказы")
@@ -9,12 +6,12 @@ from data import BASE_URL, ORDER_ENDPOINT
 class TestGetOrders:
 
     @allure.title("Получение списка заказов")
-    def test_get_orders(self):
-        response = requests.get(
-            f"{BASE_URL}{ORDER_ENDPOINT}"
-        )
+    def test_get_orders(self, api):
+        # GET-запрос вынесен в api.py.
+        response = api.get_orders()
 
         assert response.status_code == 200
         assert "orders" in response.json()
         assert isinstance(response.json()["orders"], list)
+
         

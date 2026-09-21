@@ -6,7 +6,46 @@ COURIER_DELETE_ENDPOINT = "/api/v1/courier/{courier_id}"
 
 ORDER_ENDPOINT = "/api/v1/orders"
 
-ORDER_DATA = {
+ORDER_DATA_BLACK = {
+    "firstName": "Naruto",
+    "lastName": "Uchiha",
+    "address": "Konoha, 142 apt.",
+    "metroStation": 4,
+    "phone": "+7 800 355 35 35",
+    "rentTime": 5,
+    "deliveryDate": "2020-06-06",
+    "comment": "Saske, come back to Konoha",
+    "color": ["BLACK"]
+}
+
+
+ORDER_DATA_GREY = {
+    "firstName": "Naruto",
+    "lastName": "Uchiha",
+    "address": "Konoha, 142 apt.",
+    "metroStation": 4,
+    "phone": "+7 800 355 35 35",
+    "rentTime": 5,
+    "deliveryDate": "2020-06-06",
+    "comment": "Saske, come back to Konoha",
+    "color": ["GREY"]
+}
+
+
+ORDER_DATA_BLACK_GREY = {
+    "firstName": "Naruto",
+    "lastName": "Uchiha",
+    "address": "Konoha, 142 apt.",
+    "metroStation": 4,
+    "phone": "+7 800 355 35 35",
+    "rentTime": 5,
+    "deliveryDate": "2020-06-06",
+    "comment": "Saske, come back to Konoha",
+    "color": ["BLACK", "GREY"]
+}
+
+
+ORDER_DATA_WITHOUT_COLOR = {
     "firstName": "Naruto",
     "lastName": "Uchiha",
     "address": "Konoha, 142 apt.",
